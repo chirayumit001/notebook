@@ -1,5 +1,4 @@
-import React from 'react'
-
+import { Notes } from './Notes'
 
 export const Home = () => {
     return (
@@ -24,9 +23,7 @@ export const Home = () => {
             </form>
             </div>
 
-            <div className="container my-3">
-            <h2>Your Notes</h2>
-            </div>
+           <Notes />
         </div>
     )
 }
