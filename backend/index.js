@@ -3,7 +3,7 @@ const express = require('express')
 connectToMongo()
 
 const app = express()
-const port = 5001
+const port = 6000
 
 app.use(express.json())
 
