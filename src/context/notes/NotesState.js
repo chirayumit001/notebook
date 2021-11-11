@@ -21,7 +21,7 @@ const NoteState = (props) => {
     });
 
     const json = await response.json()
-    console.log(json)
+    // console.log(json)
     setNotes(json)
 
 
@@ -40,6 +40,7 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({title, description, tag}) 
     });
+    // eslint-disable-next-line
     const josn = response.json(); 
     console.log("Adding a new note");
     const note = {
@@ -88,6 +89,7 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({title, description, tag}) 
     });
+    // eslint-disable-next-line
     const josn = response.json(); 
   
     //Logic to edit in client
