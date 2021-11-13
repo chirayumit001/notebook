@@ -2,29 +2,26 @@ import NoteContext from "./NoteContext";
 import { useState } from "react";
 
 const NoteState = (props) => {
-  const host = "http://localhost:5000"
-  const notesInitial = []
+  const host = "http://localhost:5000";
+  const notesInitial = [];
 
   const [notes, setNotes] = useState(notesInitial);
-
 
   //Get all note
   const getNotes = async () => {
     //API Call
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {
-      method: 'GET', 
-      
+      method: "GET",
+
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE4M2UwMGFmMTlhMDk5M2RkZWVhNGM1In0sImlhdCI6MTYzNjAzODI0Mn0.NfcoI-WQodyO_6KZL1uDv7f4yROYeSHVyEMm3Lfm3zE'
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE4M2UwMGFmMTlhMDk5M2RkZWVhNGM1In0sImlhdCI6MTYzNjAzODI0Mn0.NfcoI-WQodyO_6KZL1uDv7f4yROYeSHVyEMm3Lfm3zE",
       },
     });
 
-    const json = await response.json()
-    // console.log(json)
-    setNotes(json)
-
-
+    const json = await response.json();
+    console.log(json)
+    setNotes(json);
   };
 
   //Add a note
@@ -32,16 +29,19 @@ const NoteState = (props) => {
     //TODO API call
     //API Call
     const response = await fetch(`${host}/api/notes/addnote`, {
-      method: 'POST', 
-      
+      method: "POST",
+
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE4M2UwMGFmMTlhMDk5M2RkZWVhNGM1In0sImlhdCI6MTYzNjAzODI0Mn0.NfcoI-WQodyO_6KZL1uDv7f4yROYeSHVyEMm3Lfm3zE'
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE4M2UwMGFmMTlhMDk5M2RkZWVhNGM1In0sImlhdCI6MTYzNjAzODI0Mn0.NfcoI-WQodyO_6KZL1uDv7f4yROYeSHVyEMm3Lfm3zE",
       },
-      body: JSON.stringify({title, description, tag}) 
+      body: JSON.stringify({ title, description, tag }),
     });
+
+    const json = await response.json()
+    console.log(json)
     // eslint-disable-next-line
-    const josn = response.json(); 
     console.log("Adding a new note");
     const note = {
       _id: "61843c12114e86bf7b90024c7",
@@ -52,28 +52,29 @@ const NoteState = (props) => {
       date: "2021-11-04T20:01:19.435Z",
       __v: 0,
     };
+
     setNotes(notes.concat(note));
+    console.log(notes);
   };
   //Delete a note
   const deleteNote = async (id) => {
     //TODO API call
     const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
-      method: 'DELETE', 
-      
+      method: "DELETE",
+
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE4M2UwMGFmMTlhMDk5M2RkZWVhNGM1In0sImlhdCI6MTYzNjAzODI0Mn0.NfcoI-WQodyO_6KZL1uDv7f4yROYeSHVyEMm3Lfm3zE'
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE4M2UwMGFmMTlhMDk5M2RkZWVhNGM1In0sImlhdCI6MTYzNjAzODI0Mn0.NfcoI-WQodyO_6KZL1uDv7f4yROYeSHVyEMm3Lfm3zE",
       },
-
     });
-    const json = response.json(); 
-    console.log(json)
-
+    const json = response.json();
+    console.log(json);
 
     console.log("Deleteing the note " + id);
-    const newNotes = (notes.filter((note) => {
+    const newNotes = notes.filter((note) => {
       return note._id !== id;
-    }));
+    });
     setNotes(newNotes);
   };
 
@@ -81,27 +82,30 @@ const NoteState = (props) => {
   const editNote = async (id, title, description, tag) => {
     //API call
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
-      method: 'POST', 
-      
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE4M2UwMGFmMTlhMDk5M2RkZWVhNGM1In0sImlhdCI6MTYzNjAzODI0Mn0.NfcoI-WQodyO_6KZL1uDv7f4yROYeSHVyEMm3Lfm3zE'
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE4M2UwMGFmMTlhMDk5M2RkZWVhNGM1In0sImlhdCI6MTYzNjAzODI0Mn0.NfcoI-WQodyO_6KZL1uDv7f4yROYeSHVyEMm3Lfm3zE",
       },
-      body: JSON.stringify({title, description, tag}) 
+      body: JSON.stringify({ title, description, tag }),
     });
     // eslint-disable-next-line
-    const josn = response.json(); 
-  
+    const json = response.json();
+    console.log(json);
+
+    let newNotes = JSON.parse(JSON.stringify(notes))
     //Logic to edit in client
-    for (let index = 0; index < notes.length; index++) {
-      const element = notes[index];
-      if(element._id === id) {
-        element.title = title
-        element.description = description
-        element.tag = tag
+    for (let index = 0; index < newNotes.length; index++) {
+      const element = newNotes[index];
+      if (element._id === id) {
+        newNotes[index].title = title;
+        newNotes[index].description = description;
+        newNotes[index].tag = tag;
+        break;
       }
-      
     }
+    setNotes(newNotes)
   };
 
   return (
